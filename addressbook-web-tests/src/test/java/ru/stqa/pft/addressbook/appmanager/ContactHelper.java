@@ -3,7 +3,10 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactFieldsData;
+
+import java.util.NoSuchElementException;
 
 public class ContactHelper extends HelperBase {
     public ContactHelper (WebDriver driver) {
@@ -21,7 +24,7 @@ public class ContactHelper extends HelperBase {
     public void submitContactModification() {
         clickName ("update");
     }
-    public void fillContactForm(ContactFieldsData contactFieldsData) {
+    public void fillContactForm(ContactFieldsData contactFieldsData, boolean creation) {
         type(By.name("firstname"), contactFieldsData.getContactFirstname());
         type(By.name("middlename"), contactFieldsData.getContactMiddlename());
         type(By.name("lastname"), contactFieldsData.getContactLastname());
@@ -37,16 +40,23 @@ public class ContactHelper extends HelperBase {
         type(By.name("email2"), contactFieldsData.getContactEmail2());
         type(By.name("email3"), contactFieldsData.getContactEmail3());
         type(By.name("homepage"), contactFieldsData.getContactHomepage());
-        typeSelector(By.name("bday"),contactFieldsData.getContactBday(),By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Birthday:'])[1]/following::option[19]"));
-        typeSelector(By.name("bmonth"),contactFieldsData.getContactBmonth(),By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Birthday:'])[1]/following::option[45]"));
+        type(By.name("bday"),contactFieldsData.getContactBday(),By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Birthday:'])[1]/following::option[19]"));
+        type(By.name("bmonth"),contactFieldsData.getContactBmonth(),By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Birthday:'])[1]/following::option[45]"));
         type(By.name("byear"), contactFieldsData.getContactByear());
-        typeSelector(By.name("aday"),contactFieldsData.getContactAday(),By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Anniversary:'])[1]/following::option[45]"));
-        typeSelector(By.name("amonth"),contactFieldsData.getContactAmonth(),By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Anniversary:'])[1]/following::option[45]"));
+        type(By.name("aday"),contactFieldsData.getContactAday(),By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Anniversary:'])[1]/following::option[45]"));
+        type(By.name("amonth"),contactFieldsData.getContactAmonth(),By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Anniversary:'])[1]/following::option[45]"));
         type(By.name("ayear"), contactFieldsData.getContactAyear());
+        if (creation) {
+            new Select(driver.findElement(By.name("new_group"))).selectByVisibleText(contactFieldsData.getContactGroup());
+        } /*else {
+            Assert.assertFalse(isElementPresent(By.name("new_group")));
+        }*/
         type(By.name("address2"), contactFieldsData.getContactAddress2());
         type(By.name("phone2"), contactFieldsData.getContactPhone2());
         type(By.name("notes"), contactFieldsData.getContactNotes());
-    }
+
+        }
+
 
     /*public void fillContactForm(String firstname, String middlename, String lastname, String nickname, String title, String company, String address, String home, String mobile, String work, String fax, String email, String email2, String email3, String homepage, String bday, String bmonth, String byear, String aday, String amonth, String ayear, String new_group, String address2, String phone2, String notes) {
         driver.findElement(By.name("firstname")).click();

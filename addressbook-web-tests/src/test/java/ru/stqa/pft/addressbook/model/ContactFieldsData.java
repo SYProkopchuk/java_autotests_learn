@@ -25,6 +25,7 @@ public class ContactFieldsData {
     private final String contactAddress2;
     private final String contactPhone2;
     private final String contactNotes;
+    private final String contactGroup;
 
     public ContactFieldsData(String contactFirstname, String contactMiddlename, String contactLastname,
                              String contactNickname, String contactTitle, String contactCompany,
@@ -32,7 +33,7 @@ public class ContactFieldsData {
                              String contactFax, String contactEmail, String contactEmail2, String contactEmail3,
                              String contactHomepage,String contactBday,String contactBmonth,
                              String contactByear,String contactAday,String contactAmonth, String contactAyear,
-                             String contactAddress2, String contactPhone2, String contactNotes) {
+                             String contactAddress2,String contactGroup, String contactPhone2, String contactNotes ) {
         this.contactFirstname = contactFirstname;
         this.contactMiddlename = contactMiddlename;
         this.contactLastname = contactLastname;
@@ -57,7 +58,7 @@ public class ContactFieldsData {
         this.contactAddress2 = contactAddress2;
         this.contactPhone2 = contactPhone2;
         this.contactNotes = contactNotes;
-
+        this.contactGroup = contactGroup;
     }
 
     public String getContactFirstname() {
@@ -152,6 +153,10 @@ public class ContactFieldsData {
 
     public String getContactNotes() {
         return contactNotes;
+    }
+
+    public String getContactGroup() {
+        return contactGroup;
     }
 
 }

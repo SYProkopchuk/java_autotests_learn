@@ -33,7 +33,7 @@ public class ApplicationManager {
         } else if (browser.equals(BrowserType.IE)) {
                 driver = new InternetExplorerDriver();}
         baseUrl = "https://www.katalon.com/";
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         groupHelper = new GroupHelper(driver);
         contactHelper = new ContactHelper(driver);
         navigationHelper = new NavigationHelper(driver);

@@ -12,8 +12,8 @@ public class ContactModificationTests extends TestBase {
                 "Test1", "Test1", "Test1", "Test1",
                 "Test1", "Test1", "Test1", "Test1",
                 "Test1", "17","November", "1993,",
-                "13","October","1992", "Test", "888",
-                "qwerty"));
+                "13","October","1992", "Test", null,
+                "12345", "qwerty"), false);
         app.getContactHelper().submitContactModification();
     }
 }

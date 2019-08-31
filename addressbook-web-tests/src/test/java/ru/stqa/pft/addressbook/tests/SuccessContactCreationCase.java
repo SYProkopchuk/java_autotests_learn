@@ -14,8 +14,8 @@ public class SuccessContactCreationCase extends TestBase {
                "Test1", "Test1", "Test1", "Test1",
                "Test1", "Test1", "Test1", "Test1",
                "Test1", "17","November", "1993,",
-               "13","October","1992", "Test", "888",
-               "qwerty"));
+               "13","October","1992", "Test", "Test1",
+               "1234","Test1"), true);
         tearDown();
 
     }

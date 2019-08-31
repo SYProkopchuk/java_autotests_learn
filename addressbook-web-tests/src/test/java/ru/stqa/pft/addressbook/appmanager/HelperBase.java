@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.NoSuchElementException;
+
 public class HelperBase {
 
     public WebDriver driver;
@@ -35,7 +37,8 @@ public class HelperBase {
     }
     }
 
-    public void typeSelector (By locator, String text, By xpath) {
+
+    public void type (By locator, String text, By xpath) {
         if (text!=null){
             String existingText = driver.findElement(locator).getAttribute("value");
             if (!text.equals(existingText)){
@@ -46,4 +49,12 @@ public class HelperBase {
         }
     }
 
+    protected boolean isElementPresent(By locator) {
+        try {
+            driver.findElement (locator);
+            return true;
+        } catch (NoSuchElementException ex) {
+            return false;
+        }
+    }
 }
